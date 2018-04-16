@@ -6,26 +6,21 @@ app.get('/', (req, res) => res.send('Working!'));
 
 app.listen(6060, () => console.log('Example app listening on port 6060!'));
 
-var file = [1];
+
 var text;
 var name, phone, genre;
 
+//Read the whole folder
+var folder = fs.readdirSync('people');
 
-    for(var i = 0; i<file.length; i++){
-        file[i] = fs.readFileSync('user'+ i + '.txt');
-        text = String(file[i]).split(',');
-        name = text[0];
-        phone = text[1];
-        genre = text[2];
-        console.log('user: ' + i);
-        console.log('name: ' + name);
-        console.log('phone: ' + phone);
-        console.log('genre: ' + genre);
-    }
-
+//Write the HTML with the folder's name
 app.get('/dir', (req, res) => {
-    res.send(getHtml(name, phone, genre));
-  });
+    for (var i = 0; i < folder.length; i++) {
+        res.send(getHtml(folder));
+    }
+});
+
+//Read the file
 
 //console.log('This is the file: ' + file);
 
@@ -45,9 +40,7 @@ var getHtml = function (name, phone, genre) {
 <body>
     <h1>People</h1>
     <div id="people-list">
-    <h2>${name}</h2>
-    <p>${phone}</p>
-    <p>${genre}</p>
+    <a href="localhost:6060">${name}</a> 
     </div>
     <label for="">Name</label>
     <input type="text" id="name" name="name">
@@ -56,5 +49,5 @@ var getHtml = function (name, phone, genre) {
 </body>
 </html>
     
-    `
+    `;
 }
