@@ -9,18 +9,25 @@ app.engine('hbs', consolidate.handlebars);
 app.set('view engine', 'hbs');
 app.set('views', './views');
 
-app.use('/css', express.static('css'));
+app.use(express.static('public'));
 
 app.listen(6060, () => console.log('Example app listening on port 6060!'));
 
 var name, phone, genre;
 
-//Read the whole directory folder
-var folders = fs.readdirSync('people');
-
 //Write the HTML with the folder's name
 app.get('/', (req, res) => {
+    //Read the whole directory folder
+    var folders = fs.readdirSync('people');
+    folders.shift();
     res.render('index', {
         folders: folders
     });
 });
+
+app.get('/user/:id', function(req, res) {
+    res.render('users', {
+        user: req.params.id
+    });
+  });
+

@@ -5,18 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Directory</title>
-    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/users.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i,800" rel="stylesheet"> 
 </head>
 <body>
-    <h1>People</h1>
-    <div id="people">
-        {{#each folders}}
-        <ul>
-        <a href="/user/{{this}}"><li>{{this}}</li></a>
-        </ul>
-        {{/each}}
+    <h1>{{user}}</h1>
     </div>
-    <button id="add">ADD</button>
 </body>
 </html>
