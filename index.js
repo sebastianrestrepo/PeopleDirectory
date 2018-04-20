@@ -18,16 +18,21 @@ var name, phone, genre;
 //Write the HTML with the folder's name
 app.get('/', (req, res) => {
     //Read the whole directory folder
-    var folders = fs.readdirSync('people');
-    folders.shift();
+    var folder = fs.readdirSync('people');
+    folder.shift();
     res.render('index', {
-        folders: folders
+        folder: folder
     });
 });
 
-app.get('/user/:id', function(req, res) {
+app.get('/user/:id', function (req, res) {
+    var dataFile = fs.readFileSync('../PeopleDirectory/people/' + req.params.id);
+    var dataText = String(dataFile);
+    var data = dataText.split(',');
+    console.log('data0' + data[0]);
+    console.log('data1' + data[1]);
     res.render('users', {
-        user: req.params.id
+        user: req.params.id,
+        data: data,
     });
-  });
-
+});

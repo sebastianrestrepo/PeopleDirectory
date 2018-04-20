@@ -9,7 +9,11 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i,800" rel="stylesheet"> 
 </head>
 <body>
+    <div id="info-user">
     <h1>{{user}}</h1>
+    {{#each data}}
+    <p>{{this}}</p>
+    {{/each}}
     </div>
 </body>
 </html>
